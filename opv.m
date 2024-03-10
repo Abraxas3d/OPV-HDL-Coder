@@ -59,12 +59,16 @@ f4 = channel_center_frequency + outer_deviation;   % carrier frequency for infor
 preamble = repmat([3; -3], symbols_per_frame/2, 1);
 
 %% Received Samples Data
+% example of how to create data in the workspace so it can be brought in
+% as a workspace variable in simulink.
+
 %received_samples = zeros(samples_per_frame*20, 1);
-received_samples = repmat([0;1], samples_per_frame*10, 1);
-received_samples = received_samples*2^14;
-received_samples = complex(received_samples);
-received_samples = fi(received_samples)
-received_samples = timeseries(received_samples, 1/sample_rate);
+
+% received_samples = repmat([0;1], samples_per_frame*10, 1);
+% received_samples = received_samples*2^14;
+% received_samples = complex(received_samples);
+% received_samples = fi(received_samples)
+% received_samples = timeseries(received_samples, 1/sample_rate);
 
 
 %% Create a Push to Talk (PTT) Signal
