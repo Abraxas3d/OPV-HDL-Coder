@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Vivado v2022.2 (64-bit)
+# SW Build 3671981 on Fri Oct 14 04:59:54 MDT 2022
+# IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+# Start of session at: Wed Feb 14 00:45:14 2024
+# Process ID: 5725
+# Current directory: /home/matt/OPV_abraxas3d/hdl_prj/vivado_ip_prj/library/axi_clkgen
+# Command line: vivado -mode batch -source /home/matt/OPV_abraxas3d/hdl_prj/vivado_ip_prj/library/axi_clkgen/axi_clkgen_ip.tcl
+# Log file: /home/matt/OPV_abraxas3d/hdl_prj/vivado_ip_prj/library/axi_clkgen/vivado.log
+# Journal file: /home/matt/OPV_abraxas3d/hdl_prj/vivado_ip_prj/library/axi_clkgen/vivado.jou
+# Running On: keroppi, OS: Linux, CPU Frequency: 3700.250 MHz, CPU Physical cores: 16, Host memory: 33652 MB
+#-----------------------------------------------------------
+source /home/matt/OPV_abraxas3d/hdl_prj/vivado_ip_prj/library/axi_clkgen/axi_clkgen_ip.tcl

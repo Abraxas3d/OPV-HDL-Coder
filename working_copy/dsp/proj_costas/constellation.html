@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+	<title>All Electronics</title>
+</head>
+<body>
+	<header class="w-100 textn-center p-4">
+		<h3>Costas-Loop error functions</h3>
+		<small>All Electronics Channel - Gregory F. Gusberti</small>
+	</header>
+	<hr>
+	<main class="d-flex justify-content-around">
+		<div style="width: 28%; display: inline-block;">
+			<h2>BPSK</h2>
+			<canvas id="canvas_bpsk" style="width: 100%; aspect-ratio: 1;"></canvas>
+		</div>
+		<div style="width: 28%; display: inline-block;">
+			<h2>QPSK</h2>
+			<canvas id="canvas_qpsk" style="width: 100%; aspect-ratio: 1;"></canvas>
+		</div>
+		<div style="width: 28%; display: inline-block;">
+			<h2>8PSK</h2>
+			<canvas id="canvas_8psk" style="width: 100%; aspect-ratio: 1;"></canvas>
+		</div>
+	</main>
+
+	<script>
+		function generate_constellation(type = '')
+		{
+			const id = ['bpsk', 'qpsk', '8psk'].indexOf(type);
+			const N  = [2, 4, 8][id];
+			const P  = [0, 1/8, 1/16][id];
+			const points = [];
+
+			for (let i = 0; i < N; i++)
+				points.push({ I: Math.cos(2 * Math.PI * (i/N + P)), Q: Math.sin(2 * Math.PI * (i/N + P)) });
+
+			return points;
+		}
+
+		function draw_constellation(points, canvas_id, error_function = null, event = null)
+		{
+			const canvas = document.getElementById(canvas_id); 
+			const ctx    = canvas.getContext('2d'); 
+			const rect   = canvas.getBoundingClientRect();
+
+			const SIZE = 600;
+
+			canvas.width  = SIZE; 
+			canvas.height = SIZE; 
+
+			const _px = (pos) => pos * SIZE;
+
+			const _draw_line = (x1, y1, x2, y2) =>
+			{
+				ctx.beginPath();
+				ctx.moveTo(x1, y1); 
+				ctx.lineTo(x2, y2); 
+				ctx.stroke();
+			}
+
+			const _draw_circle = (x, y, radius) =>
+			{
+				ctx.beginPath();
+				ctx.arc(x, y, radius, 0, 7);  
+				ctx.stroke();
+			}
+
+			ctx.clearRect(0, 0, SIZE, SIZE); 
+
+			// error map -----------------------------------
+			if (error_function)
+			{
+				const imd = ctx.getImageData(0, 0, SIZE, SIZE);
+
+				for (let idx = 0; idx < imd.data.length; idx += 4)
+				{
+					const px = idx / 4; 
+					const x  = px % imd.width; 
+					const y  = px / imd.width; 
+
+					const _xx = x/SIZE - 0.5; 
+					const _yy = y/SIZE - 0.5;
+
+					const e = 500 * error_function(_xx, _yy);
+
+					imd.data[idx + 0] = 255 + e;
+					imd.data[idx + 1] = 255 - Math.abs(e)/3;
+					imd.data[idx + 2] = 255 - e;
+					imd.data[idx + 3] = 200;
+				}
+
+				ctx.putImageData(imd, 0, 0);
+			}
+
+			// draw axes -----------------------------------
+			ctx.strokeStyle = 'rgb(60, 60, 60)';
+			ctx.lineWidth = 3;
+
+			ctx.font        = '30px Arial';
+			_draw_line(0, SIZE/2, SIZE, SIZE/2); 
+			_draw_line(SIZE/2, 0, SIZE/2, SIZE);
+			ctx.fontSize = 16;
+			ctx.fillText('I', SIZE - 10, SIZE/2 + 28);
+			ctx.fillText('Q', SIZE/2 + 5, 26);
+
+			// draw points ---------------------------------
+			ctx.lineWidth = 2;
+			//ctx.fillStyle = 'rgb(0, 80, 250)';
+			ctx.fillStyle = 'rgb(255, 80, 0)';
+			for (const point of points)
+			{
+				_draw_circle(_px(0.5 + point.I/2.2), _px(0.5 + point.Q/2.2), 12);
+				ctx.fill();
+			}
+
+			// error arrow ---------------------------------
+			if (event && event.target == canvas) 
+			{
+				const mx = SIZE * (event.clientX - rect.x) / rect.width;
+				const my = SIZE * (event.clientY - rect.y) / rect.height;
+
+				const mxx = mx/SIZE - 0.5;
+				const myy = my/SIZE - 0.5;
+
+				_draw_circle(mx, my, 6);
+				ctx.fillStyle = 'black';
+				ctx.fill();
+
+				const err = error_function(mxx, myy); 
+				console.log(err);
+				const arrow_size = 500 * err;
+
+				const length  = Math.hypot(mxx, myy);
+				const arrow_y = arrow_size * mxx/length;
+				const arrow_x = arrow_size * myy/length;
+
+				_draw_line(SIZE/2, SIZE/2, mx, my);
+				_draw_line(mx, my, mx + arrow_x, my - arrow_y);
+			}
+		}
+
+		window.addEventListener('load', () =>
+		{
+			let event = null; 
+
+			window.onmousemove = (e) => event = e; 
+
+			setInterval(() =>
+			{
+				if (!event)
+					return;
+
+				// bpsk -----------------------------------------------------
+				const _bpsk   = generate_constellation('bpsk');
+
+				//const _e_bpsk = (I, Q) => Math.sign(I) * Q; 
+				const _e_bpsk = (I, Q) => 2 * I * Q; 
+
+				draw_constellation(_bpsk, 'canvas_bpsk', _e_bpsk, event);
+
+				// qpsk -----------------------------------------------------
+				const _qpsk = generate_constellation('qpsk');
+
+				const _e_qpsk = (I, Q) => Math.sign(I) * Q - Math.sign(Q) * I;
+				draw_constellation(_qpsk, 'canvas_qpsk', _e_qpsk, event);
+
+				// 8psk -----------------------------------------------------
+				const _8psk = generate_constellation('8psk');
+
+				_e_8psk = (I, Q) => 
+				{
+					const rotate = (I, Q, ang) => [I * Math.cos(ang) - Q * Math.sin(ang), I * Math.sin(ang) + Q * Math.cos(ang)];
+
+					let [rI, rQ] = rotate(I, Q, Math.PI * 45/ 180);
+					return _e_qpsk(I, Q) + _e_qpsk(rI, rQ);
+				}
+				draw_constellation(_8psk, 'canvas_8psk', _e_8psk, event);
+
+				event = null;
+			}, 100);
+		});
+	</script>
+</body>
+</html>

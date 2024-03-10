@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=8" /> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Model Advisor Report for 'opv_receiver_HDL_coder_input/OPV Receiver'</title>  
+<style type="text/css">
+<!--
+@media screen {    
+    /* Table Formatting */
+    .AdvTable th { 
+        background:#80a0c1 url(data:image/gif;base64,R0lGODlhAQAaAKIAAHSRr3mXtn+fv2V/mX2cvG2JpVxzi4CgwSH5BAAAAAAALAAAAAABABoAAAMJeLrcLCSAMkwCADs=) repeat-x bottom left; 
+    }
+}
+
+@media all {
+    *{ font-family: sans-serif; }
+
+	H3 {
+		font-size: 14pt;
+		font-weight: 200;
+	}
+	H4 {
+		font-size: 9pt;
+		font-weight: normal;
+	}
+	H5 {
+		font-size: 12pt;
+		font-style: italic;
+		font-weight: bold;
+		color: #333333;
+		margin-bottom: 2px;
+	}
+	a[href] {
+		color: #005FCE;
+	}
+	.subsection {
+		padding-left: 30px;
+	}
+    
+    .CheckHeading {
+		font-size:1.05em;
+		font-weight:bold;
+	}
+
+    /* Table Formatting */
+    table.AdvTable { 
+        border-collapse:collapse; border:1px solid #ececec; border-right:none; border-bottom:none; 
+    }
+
+    .AdvTable th { 
+        padding-left:5px; 
+        padding-right:5px; 
+        color:#fff; 
+        line-height:120%; 
+        background:#80a0c1 url(data:image/gif;base64,R0lGODlhAQAaAKIAAHSRr3mXtn+fv2V/mX2cvG2JpVxzi4CgwSH5BAAAAAAALAAAAAABABoAAAMJeLrcLCSAMkwCADs=) repeat-x bottom left; 
+        border-right: 1px solid #ececec; 
+        border-bottom: 1px solid #ececec; 
+    }
+
+    .AdvTable td { 
+        padding-left:5px; 
+        padding-right:5px; 
+        border-right:1px solid #ececec; 
+        border-bottom: 1px solid #ececec; 
+    }
+    
+    .AdvTable th p { 
+        margin-bottom:0px; 
+    }
+
+    .AdvTable p { 
+        margin-bottom:10px; 
+    }
+    
+    .AdvTableNoBorder p { 
+        margin-bottom:10px; 
+    }
+
+    table+span.SDCollapseControl { 
+        font-size:0.8em; 
+        font-weight:bold; 
+    }
+
+    ul+span.SDCollapseControl { 
+        margin-left:25px; 
+        font-size:0.8em;
+        font-weight:bold; 
+    }
+
+    ol+span.SDCollapseControl { 
+        margin-left:25px; 
+        font-size:0.8em; 
+        font-weight:bold; 
+    }
+
+    .SystemdefinedCollapse { 
+        margin-top:0px;
+        margin-bottom:5px; 
+    }
+
+    div.AllCollapse p, div.AllCollapse table, div.AllCollapse ol, div.AllCollapse ul { 
+        margin-top:0pt;
+        margin-bottom:0pt; 
+        margin-left:18px;
+    }
+
+    div.AllCollapse + div { 
+        margin-top:0pt;
+        margin-bottom:0pt; 
+        margin-left:18px; 
+    }
+
+    img.CollapseAllControlImage { 
+        float:left; 
+    }
+
+    .SubResultsSummary {
+        padding-left:30px;
+    }
+
+    .EmptyFolderMessage {
+        color:gray;
+        margin:10px 0 0 30px;
+        font-size:0.8em;
+    }
+	
+    .CsEml-Symbol-Status-Pass
+    { 
+        color: green;
+        font-family: monospace;
+    }
+
+    .CsEml-Symbol-Status-Warn
+        { 
+        color: orange;
+        font-family: monospace;
+    }
+
+    .CsEml-Symbol-Status-Fail
+    { 
+        color: red;
+        font-family: monospace;
+    }
+    
+    .CsEml-Line-Number
+    {
+        color: #A0A0A0;
+        font-style: italic;
+        font-family: monospace;
+    }
+
+    .CsEml-Code
+    {
+        color: blue;
+        font-family: monospace;
+    }
+
+    .CsEml-Code-Fragment
+    {
+        color: blue;
+        font-weight: bold;
+        font-family: monospace;
+        margin-right: 0;
+        padding-right: 0;
+        margin-left: 0;
+        padding-left: 0;
+    }
+
+    .CsEml-Function-Type
+    {
+        color:       #A0A0A0;
+        font-style:  italic;
+        font-family: monospace;
+    }
+
+}
+-->
+</style>
+
+<script type="text/javascript"> <!-- /* Copyright 2013-2017 The MathWorks, Inc */
+/* define String.trim() method if not defined (used by filterByText() function) */
+if(!String.prototype.trim) {
+  String.prototype.trim = function () {
+    return this.replace(/^\s+|\s+$/g,'');
+  };
+}
+
+// rtwreport needs it 
+function init() {
+    var showFailed = document.getElementById("Failed Checkbox");
+    var showPassed = document.getElementById("Passed Checkbox");
+    var showWarning = document.getElementById("Warning Checkbox");
+    var showNotRun = document.getElementById("Not Run Checkbox");
+    var showJustified = document.getElementById("Justified Checkbox");
+    var showIncomplete = document.getElementById("Incomplete Checkbox");      
+    
+    urlQueryStringRegexp = RegExp('\\?(.*)').exec(window.location.search);
+
+    if (urlQueryStringRegexp == null) {
+        /* refresh check boxes and search input */
+        showFailed.checked = true;
+        showPassed.checked = true;
+        showWarning.checked = true;
+        showNotRun.checked = true;
+        showJustified.checked = true;
+        showIncomplete.checked = true;
+    }
+    else 
+    {
+        showFailed.checked = false;
+        showPassed.checked = false;
+        showWarning.checked = false;
+        showNotRun.checked = false;
+        
+        urlQueryString = urlQueryStringRegexp[1];
+        
+        var queryArgs = [];
+        
+        if (urlQueryString.indexOf("&") == -1)
+        {
+            // Only 1 argument
+            queryArgs[0] = urlQueryString;
+        }
+        else
+        {
+            queryArgs = urlQueryString.split("&");
+        }
+        
+        for (var idx = 0; idx < queryArgs.length; ++idx)
+        {
+            // get in
+            if (queryArgs[idx].localeCompare("showPassedChecks") == 0) 
+            {
+                showPassed.checked = true;
+            }
+            else if (queryArgs[idx].localeCompare("showWarningChecks") == 0) 
+            {
+                showWarning.checked = true;
+            }
+            else if (queryArgs[idx].localeCompare("showFailedChecks") == 0)
+            {
+                showFailed.checked = true;
+            }
+            else if (queryArgs[idx].localeCompare("showNotRunChecks") == 0)
+            {
+                showNotRun.checked = true;
+            }
+        }
+            
+        // if nothing is selected, select everything
+        if (!showFailed.checked && !showPassed.checked && 
+            !showWarning.checked && !showNotRun.checked) 
+        {
+            showFailed.checked = true;
+            showPassed.checked = true;
+            showWarning.checked = true;
+            showNotRun.checked = true;
+            showJustified.checked = true;
+            showIncomplete.checked = true;
+        }
+    }
+    
+    updateVisibleChecks();
+}
+
+function markEmptyFolders(){
+	var nodeTypes = ["FailedCheck","PassedCheck",  "WarningCheck", "NotRunCheck"];
+	var folderArray = document.querySelectorAll("div.FolderContent");
+	
+	for (var n=0;n<folderArray.length;n++){
+		/* get direct check result children and check visibility */
+		var childNodes = folderArray[n].childNodes;
+		var noneVisible = true;
+		var noChecksInFolder = true;
+		
+		for (var ni=0;ni<childNodes.length;ni++){
+			if (childNodes[ni].nodeType == 1 && childNodes[ni].tagName.toLowerCase() == "div"){
+				if (childNodes[ni].className == nodeTypes[0] || childNodes[ni].className == nodeTypes[1] || childNodes[ni].className == nodeTypes[2] || childNodes[ni].className == nodeTypes[3]){
+					noChecksInFolder = false;
+					if (childNodes[ni].style.display != "none"){
+						noneVisible = false;
+                        break;
+					}
+				}
+			}
+		}
+		
+		/* Only display hidden message if any checks inside the folders and not just other folders */
+		if (!noChecksInFolder){
+			var hiddenMessage = folderArray[n].querySelector("div.EmptyFolderMessage");
+			
+			if (hiddenMessage && noneVisible == true){
+				hiddenMessage.style.display = "";
+			}else if (hiddenMessage && noneVisible == false){
+				hiddenMessage.style.display = "none";
+			}else{
+				/* hidden message not found */
+			}
+		}
+	}
+
+    return;
+}
+
+function updateVisibleChecks( /* show all flags */ checkbox ){
+	
+	var checkboxes = ["Failed Checkbox", "Passed Checkbox", "Warning Checkbox", "Not Run Checkbox", "Justified Checkbox", "Incomplete Checkbox"];
+	var nodeTypes = ["Failed Check","Passed Check",  "Warning Check", "Not Run Check", "Justified Check", "Incomplete Check"];
+	var textInput = document.getElementById("TxtFilterInput");
+	
+	
+	if (checkbox && textInput && textInput.color=="gray"){
+		var checkType = checkbox.id;
+		var ind = checkboxes.indexOf(checkType);
+		var nodes = document.getElementsByName(nodeTypes[ind]);
+		for (i = 0; i < nodes.length;i++){
+		    nodes[i].style.display = checkbox.checked ? "" : "none";
+		}
+	}
+	else{ /* Update all checks if called from init or if a previous text filter was applied */
+		for (i = 0; i < checkboxes.length; i++){
+			
+			  var show = document.getElementById(checkboxes[i]).checked ? "" : "none";
+			  var nodes = document.getElementsByName(nodeTypes[i]);
+			  for(j = 0; j < nodes.length; j++){
+				  nodes[j].style.display = show;
+			  }
+		   
+		}
+	}
+
+    /* clear text search */
+	if (textInput && checkbox){
+		textInput.value = "Search by check name";
+        textInput.style.color = "gray";
+        textInput.blur;
+	}
+
+    markEmptyFolders();
+
+    return; 
+}
+
+function filterByText(ev){
+	// get all the nodes
+	var allNodeTypes = ["Failed Check","Passed Check",  "Warning Check", "Not Run Check"];
+	var checkboxes = ["Failed Checkbox", "Passed Checkbox", "Warning Checkbox", "Not Run Checkbox"];
+	var nodeTypes = [];
+	
+	// get nodes depending on filter selections
+	for (var n=0; n<checkboxes.length; n++){
+		var checkbox = document.getElementById(checkboxes[n]);
+		if (checkbox && checkbox.checked){
+			nodeTypes.push(allNodeTypes[n]);
+		}
+	}
+	
+    var searchNodes = [".CheckHeading"];
+    var allnodes = [];
+	var alltext = [];
+	if (!ev) return;
+	var target = ev.target ? ev.target : window.event.srcElement;
+	var searchString = target.value;
+	
+	if (!searchString){
+        updateVisibleChecks();  // clear all and display by other filters
+	}else{
+		for (i = 0; i < nodeTypes.length; i++){
+			var nodes = document.getElementsByName(nodeTypes[i]);
+			for (j = 0; j < nodes.length; j++){
+				// get text from check heading
+				var checkContent = nodes[j].querySelector(searchNodes).innerHTML;
+				// creaet a regular expression to ignore case
+				var ss = new RegExp(searchString.trim(), "i");
+				if (ss.exec(checkContent)){
+				   nodes[j].style.display = "";
+				}else{
+				   nodes[j].style.display = "none";
+				}
+			}
+		}
+        markEmptyFolders();
+	}	
+}
+
+
+function MATableShrink(o,tagNameStr){
+    var temp = document.getElementsByName(tagNameStr);
+    var classUsed = document.getElementsByName('EmbedImages'); 
+    var embeddedMode = !(classUsed.length == 0);
+    var img = o.querySelector("img");
+
+    if (temp[0].style.display == "") 
+    {
+        temp[0].style.display = "none";
+        if (embeddedMode)
+        {
+            img.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAABGdBTUEAALGOfPtRkwAAACBjSFJNAAB6JQAAgIMAAPn/AACA6QAAdTAAAOpgAAA6mAAAF2+SX8VGAAAAkUlEQVR42mL8//8/AyUAIICYGCgEAAFEsQEAAUSxAQABxIIu0NTURDBQ6urqGGFsgABiwaagpqYOp+aWliYUPkAAEfQCCwt+JQABRHEYAAQQCzE2w9h//vzDUAcQQDgNgCkGacamEQYAAohiLwAEEEED8NkOAgABxEJMVOEDAAHESGlmAgggisMAIIAoNgAgwAC+/BqtC+40NQAAAABJRU5ErkJggg==";
+        }
+        else
+        {
+            img.src = "plus.png";
+        }
+    } 
+    else 
+    {
+        temp[0].style.display = "";
+        if (embeddedMode)
+        {
+            img.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAABGdBTUEAALGOfPtRkwAAACBjSFJNAAB6JQAAgIMAAPn/AACA6QAAdTAAAOpgAAA6mAAAF2+SX8VGAAAAhklEQVR42mL8//8/AyUAIICYGCgEAAFEsQEAAUSxAQABxIIu0NTURDBQ6urqGGFsgABiwaagpqYOp+aWliYUPkAAUewFgACi2ACAAGLBKcGCafafP/8wxAACCKcB2BRjAwABRLEXAAKIYgMAAoiFmKjCBwACiJHSzAQQQBR7ASCAKDYAIMAAUtQUow+YsTsAAAAASUVORK5CYII=";
+        }
+        else
+        {
+            img.src = "minus.png";
+        }
+    }
+}
+
+// rtwreport needs it 
+function updateHyperlink() {
+    docObj = window.document;
+    loc = document.location;
+    var aHash = "";
+    var externalweb = "false";
+    if (loc.search || loc.hash) {
+        if (loc.search)
+            aHash = loc.search.substring(1);
+        else
+            aHash = loc.hash.substring(1);
+    }    
+    var args = new Array();
+    args = aHash.split('&');
+    for (var i = 0; i < args.length; ++i) {
+        var arg = args[i];
+          sep = arg.indexOf('=');
+        if (sep != -1) {
+            var cmd = arg.substring(0,sep);
+            var opt = arg.substring(sep+1);
+            switch (cmd.toLowerCase()) {
+            case "externalweb":
+                externalweb = opt;
+                break;
+            }
+        }
+    }        
+    if (externalweb === "true") {        
+        var objs = docObj.getElementsByTagName("a");
+        if (objs.length > 0 && objs[0].removeAttribute) {
+            for (var i = 0; i < objs.length; ++i) {           
+                if (objs[i].href.indexOf('matlab') > -1)           
+                    objs[i].removeAttribute("href");                
+            }
+        }
+    }
+    init();
+}
+    
+function findParentNode(e) {
+   var parent = e.parentElement;
+   if (!!parent) {
+    if (parent.id == "") {   
+       return findParentNode(parent);
+    } else {
+       return parent;
+    }
+   } else {
+    return null;
+   }
+}
+
+function expandParentNode(e) {
+   var parent = findParentNode(e);
+   while (!!parent) { 
+    var prefix = "FolderControl_";
+    var folderControl = document.getElementById(prefix.concat(parent.id));
+    if (parent.style.display == "none") {       
+       MATableShrink(folderControl,parent.id);
+    }
+    parent = findParentNode(parent);
+   }
+}
+
+function isHidden(e) {
+    return (e.offsetParent === null)
+}
+
+function navigateToElement(eleID) {
+   var e = document.getElementById(eleID);
+   if (isHidden(e)) {
+       expandParentNode(e);
+   }       
+   if (!!e && e.scrollIntoView) {
+       e.scrollIntoView();
+   }
+}
+
+function setTextContent(element, value) {
+    var content = element.textContent;
+    if (value === undefined) return;
+    
+    if (content !== undefined) element.textContent = value;
+    else element.innerText = value;
+}
+
+function hideControlPanel(control){
+	var panelComponents = ["ControlsCheckFiltering", "ControlsView", "ControlsTOC"];
+	var reportContent = document.querySelector(".ReportContent");
+	var controlPanel = document.getElementById("ControlPanel");
+	var isHidden = false;
+	
+    if (reportContent && control && controlPanel) {
+    	for (var n=0; n<panelComponents.length; n++){
+			var component = document.getElementById(panelComponents[n]);
+			
+			if (component && component.style.display == ""){
+				component.style.display = "none";
+            } else if (component && component.style.display == "none"){
+				component.style.display = "";
+			}
+		}
+		
+		if (controlPanel.style.width != "6px"){
+			reportContent.style.marginLeft = "25px";
+	    	controlPanel.style.width = "6px";
+	    	control.style.left = "0px";
+	       	var innerDiv = control.querySelector("#HidePanelControlInner");
+	       	setTextContent(innerDiv, "\u25BA");
+	    } else {
+	    	reportContent.style.marginLeft = "225px";
+        	controlPanel.style.width = "210px";
+        	control.style.left = "204px";
+        	var innerDiv = control.querySelector("#HidePanelControlInner");
+        	setTextContent(innerDiv, "\u25C0");
+        }
+    }
+}
+/* Copyright 2013 The MathWorks, Inc. */
+//COLLAPSIBLE FEATURE
+
+// global variables
+var GlobalCollapseState = "off";
+
+function collapseSDHelper(o, CollElementParent, disp, mode){
+    var CollElement = CollElementParent; /* ul/ol with lists, tbody with table */
+
+    if (CollElement.nodeName == "UL" || CollElement.nodeName == "OL"){
+        var CollName = "LI";
+    }else if (CollElement.nodeName == "TABLE"){
+        if (CollElement.querySelector('tbody')) {
+            /* tr modes are child nodes of tbody node */
+            CollElement = CollElement.querySelector('tbody');
+        }
+        var CollName = "TR";
+    }
+    
+    // get children (li for list and tr for table)
+    var children = CollElement.childNodes;
+
+    var nElements = 0;
+    for (var i=0;i<children.length;i++){
+        if (children[i].nodeName == CollName){
+            nElements = nElements + 1;
+            if (nElements > 5){
+                children[i].style.display = disp;
+            }
+        }
+    }
+    if (disp == "none"){
+        if (CollName == "LI"){
+            var text = " items)";
+        }else{
+            var text = " rows)";
+        }
+        
+        var textNode = document.createTextNode(("\u2228 More (" + (nElements-5) + text));
+        o.replaceChild(textNode,o.firstChild);
+
+        CollElementParent.setAttribute("dataCollapse", "on");
+
+        /* scroll to element if it is not visible */
+        if (mode == "single" && CollElement.offsetTop < document.documentElement.scrollTop){
+			CollElement.scrollIntoView();
+		}
+    }else{
+        var textNode = document.createTextNode(("\u2227 " + "Less"));
+        o.replaceChild(textNode,o.firstChild);
+
+        CollElementParent.setAttribute("dataCollapse", "off");
+    }
+}
+
+function collapseSD(o, ID){
+    var CollElement = document.getElementById(ID);
+    if (CollElement != null){
+        if (CollElement.getAttribute("dataCollapse") == "off"){
+            var disp="none";
+        }else{
+            var disp="";
+        }
+        collapseSDHelper(o, CollElement, disp, "single");
+    }
+}
+
+function collapseAllHelper(o, CollElement, CollInfo, disp){
+
+    if (CollElement != null){
+        var img = o.querySelector("img");
+        if (disp == "none"){
+            CollElement.style.display = disp;
+			img.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAABGdBTUEAALGOfPtRkwAAACBjSFJNAAB6JQAAgIMAAPn/AACA6QAAdTAAAOpgAAA6mAAAF2+SX8VGAAAAkUlEQVR42mL8//8/AyUAIICYGCgEAAFEsQEAAUSxAQABxIIu0NTURDBQ6urqGGFsgABiwaagpqYOp+aWliYUPkAAEfQCCwt+JQABRHEYAAQQCzE2w9h//vzDUAcQQDgNgCkGacamEQYAAohiLwAEEEED8NkOAgABxEJMVOEDAAHESGlmAgggisMAIIAoNgAgwAC+/BqtC+40NQAAAABJRU5ErkJggg==";
+        }else{
+            CollElement.style.display = disp;
+			img.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAABGdBTUEAALGOfPtRkwAAACBjSFJNAAB6JQAAgIMAAPn/AACA6QAAdTAAAOpgAAA6mAAAF2+SX8VGAAAAhklEQVR42mL8//8/AyUAIICYGCgEAAFEsQEAAUSxAQABxIIu0NTURDBQ6urqGGFsgABiwaagpqYOp+aWliYUPkAAUewFgACi2ACAAGLBKcGCafafP/8wxAACCKcB2BRjAwABRLEXAAKIYgMAAoiFmKjCBwACiJHSzAQQQBR7ASCAKDYAIMAAUtQUow+YsTsAAAAASUVORK5CYII=";
+        }
+
+        if (CollInfo != null){
+            if (disp == "none"){
+                CollInfo.style.display = "";
+            }else{
+                CollInfo.style.display = "none";
+            }
+        }
+    }
+}
+
+function collapseAll(o, ID, ID2){
+    var CollElement = document.getElementById(ID);
+    var CollInfo = document.getElementById(ID2);
+
+    if (CollElement.style.display == ""){
+        var disp = "none";
+    }else{
+        var disp = "";
+    }
+
+    collapseAllHelper(o, CollElement, CollInfo, disp);
+}
+
+function expandCollapseAll(o){
+	/* IE has no method for getting elements by class name. Use querySelectorAll instead 
+       Note: requires IE not to be in IE7 compatability mode */
+    var SDCollapse = document.querySelectorAll(".SystemdefinedCollapse");
+    var Button = null;
+
+    if (GlobalCollapseState == "off"){
+        var disp = "none";
+        GlobalCollapseState = "on";
+
+        if (o && o.firstChild.nodeType == 3) {
+            var textNode = o.firstChild;
+        	textNode.nodeValue = " Show check details";
+		}
+    }else{
+        var disp = "";
+        GlobalCollapseState = "off";
+
+        if (o && o.firstChild.nodeType == 3) {
+            var textNode = o.firstChild;
+        	textNode.nodeValue = " Hide check details";
+		}
+    }
+
+    for (var i=0;i<SDCollapse.length;i++){
+        Button = SDCollapse[i].nextSibling;
+        while(Button.nodeType !== 1){
+            Button = Button.nextSibling;
+        }
+        //Button = SDCollapse[i].parentNode.querySelector("span.SDCollapseControl");
+        collapseSDHelper(Button, SDCollapse[i], disp, "all");
+    }
+		
+    var AllCollapse = document.querySelectorAll(".AllCollapse");
+
+    for (i=0;i<AllCollapse.length;i++){
+        // get children of top level collapsible div
+        var children = AllCollapse[i].parentNode.children;
+        
+        // collapsible button is first child
+		Button = children[0];
+        
+        // get content to display in collapsed state
+        // this is optional and last child of collapsible div 
+        if (Button)
+        {
+            if (children.length>2)
+            {
+                collapseAllHelper(Button, AllCollapse[i], children[2], disp);
+            }
+            else
+            {
+                collapseAllHelper(Button, AllCollapse[i], null, disp);
+            }
+        }
+    }
+}
+
+
+function expandCollapseAllOnLoad(){
+    GlobalCollapseState = "on";
+    var Switch = document.getElementById("ExpandCollapseAll");
+    expandCollapseAll(Switch);
+}
+//END COLLAPSIBLE
+
+ --></script></head>  
+<body onload="updateHyperlink(); expandCollapseAllOnLoad();">  
+<span id="top">
+
+</span>
+<!-- mdladv_ignore_start --><div id="Container"><!-- mdladv_ignore_finish -->
+<!-- mdladv_ignore_start --><div class="ReportContent" id="opv_receiver_HDL_coder_input/OPV Receiver"><!-- mdladv_ignore_finish --><table class="AdvTableNoBorder" width="100%" border="0">
+<tr>
+<td colspan="2" align="center">
+<b>
+Model Advisor Report - <font color="#800000">opv_receiver_HDL_coder_input.slx</font>
+</b>
+
+</td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<b>
+Simulink version: <font color="#800000">10.7</font>
+</b>
+
+</td>
+<td align="right" valign="top">
+<b>
+Model version: <font color="#800000">1.5</font>
+</b>
+
+</td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<b>
+System: <font color="#800000">opv_receiver_HDL_coder_input/OPV Receiver</font>
+</b>
+
+</td>
+<td align="right" valign="top">
+<b>
+Current run: <font color="#800000">14-Feb-2024 00:39:32</font>
+</b>
+
+</td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+<b>
+Treat as Referenced Model: <font color="#800000">off</font>
+</b>
+
+</td>
+<td align="right" valign="top">
+&#160;
+</td>
+
+</tr>
+
+</table>
+<br /><font color="#800000"><b>Run Summary</b></font><br /><table class="AdvTableNoBorder" width="60%" border="0">
+<tr>
+<th align="left" valign="top">
+<b>
+Incomplete
+</b>
+
+</th>
+<th align="left" valign="top">
+<b>
+Failed
+</b>
+
+</th>
+<th align="left" valign="top">
+<b>
+Warning
+</b>
+
+</th>
+<th align="left" valign="top">
+<b>
+Justified
+</b>
+
+</th>
+<th align="left" valign="top">
+<b>
+Passed
+</b>
+
+</th>
+<th align="left" valign="top">
+<b>
+Not Run
+</b>
+
+</th>
+<th align="left" valign="top">
+<b>
+Total
+</b>
+
+</th>
+<th align="left" valign="top">
+&#160;
+</th>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+&#160;&#160;<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAEQSURBVHgBrVI7csIwEH3rMK7dZdI5J0jKZNLQJJM+aRPICRJuEG7gI+Ch5QD8ChoGOnwEOobONRgvWo0QDB9jD7xGK+3u05P2AReC9g+4XPbgLn5VWAXDN2WRykS4SevUHk9PEvDbSwUpB+rUw3HEcLhOnVFwQMCvz+pWCpBLN1WpOwwtAb8/+UicScbNh0qW7j0NBrGjtwn9F2gWeCgt/iRwjKYHFAWhIkvJbB712mwBt3fZjfMZ8PUpkb+jwIAJZ7FXYxTwVCV8fH+gAKKtgpRCFMcOQeIGynVx7lapVa60BDJPUFrLTQC2lrafSL1xA8y1TCWSW+GH+kesbGu0K5WxxBub8UJ/cihP1WqviTVjXFeRN9ClYgAAAABJRU5ErkJggg=="  /> 0
+</td>
+<td align="left" valign="top">
+&#160;&#160;<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAEDSURBVHgBrVIxCsJAENwVGzux1MZCxDKg+AYVLHxBYmXjI/IECxsr4wsshPgHEUkZxCJNLCWdnWf2SI41uYBBpzhud2fm9vYO4EcgD9x+18QXruJtvYAfCCHsiXfd5QwSsQNfIDaxUpMKF7emMxhdfOgsljkR5ahGHER0XKNrKoNYbGfJ3CQbSw3Kq0I1idu0hIc91JotrQHhtllLToI6N1Agku5Uyqc1jgpoQMTH+aRi2uvEhQZ0cmMwVDHtdYPVGvDWedu6QRI+ZkBPpBNzg+c95INUHUTcKCsuGGBAi/yJR6NnAYotlIHA+djzHfWVS5kkYmBXAJmIC2lrBYi4+C94A/a+eag5PUw2AAAAAElFTkSuQmCC"  /> 1
+</td>
+<td align="left" valign="top">
+&#160;&#160;<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAD3SURBVHgBzZI7EsFQFIb/I4oQRTSUsgOlNlqPGTtgB+yAHRg9Ywka/c0WFGp0aCgYxuvIZcwk8phkRuGr7uPc///P3AP8NVY9vbBqmgirSQRdiIrWApNhL01RTXUQB9FQDel+Wi/5tFmynWInTF2PnIDuSlu6q/kC1FxBHunIXDqRBKQ7GJ5iArX9UngTXJUe/NFJu/ZDBaQ7EZoIgtAStYwZKEA3ZeLcnzcrnLerLw3uuvcfd/vbKIExIsCgcnl6sFwJSHErS0rDOUqjuUeAiMeuFhxDEw2G8RmuVwtyaGIJvNmb02M2+RJ80MDuvxjnNT8wwy94AjZHSy+aGaDFAAAAAElFTkSuQmCC"  /> 0
+</td>
+<td align="left" valign="top">
+&#160;&#160;<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAADqSURBVHgBpZKvC8JAFMffZAPFslXTLBYNitVimBYx+A/of+CibYs2rcZVg4gYBYtFUJdWLFsxb0UUDOod3Insx43dBw7e4/i++753T3h/AQ5ywIlIAuvsgb65QPB8JQpUpQimVoNhU8W5QFooT7fg+XdIg1yQwDcHOKYtsMToRb1VwXHw+LlMNQMkRrbXzi10F1kAvWSPOyDnJSpuL/aRLsWoAvPDFeolBWy9i/M4cawDxGh5BOvkJopjHRDMnQMs/hy4kx4+afNQgSzQRVKMFXMLCWgbiRPqYNZv4AsW6GsNrRp2kBXuGXwAIu1X3q8Yjd0AAAAASUVORK5CYII="  /> 0
+</td>
+<td align="left" valign="top">
+&#160;&#160;<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAHTSURBVHgBrVO9ThtBEP7mLomDFEWXpEhFbD9BlC5SUGynSkdSpoiOMt2lovXdG0CqpEpIR2cXtPxJSNAgIyoaOKBBAuEzDRYSHmb29hYbRAWjk3a1O9/PzM4B9wy6dRIHAeBFBJpioJInUIfBHeAyQZyldxL4yatwwJgRYGAvGETEPGBLlDFxgubprMM4dPIyAtNv2T0dYid2e9L9mOw+o1FKsdzf0nPP2q4IOFZFHnLEziJRJXiDuDaNF6XnUo0/k5daEMBXcMCaidFQEgUvhi0069P4WJ3QlAADL3IEYu/tKIa5IFLwUtg2a+doG6vpWu7KRzjkgA3BXrSJ3WhT7JY1h6sG3BLwOLYE/GluEt1+TxSkUqaqI2BbatY/s4ot1MofaNEqK7gxN8lduS8aWti1JSDV9ev8d6TZQU4y1XbKjf9fRPmMhvsCMxfOAf0TVuxnh6pkSDSsMrLzHuNWUMeKw06fv2e6axo3jnp5Au2dBVPWtarzkAGDdzqV16+WBCGx/7d4SjYvQeZjvmGAvJ9oHs/mj1GETlZtrCeA9zDTODoSlJuQe/xA8+RPce6PMK+cr6NempfWBJr/7LH/+skjjy4uORWKX/IzfUPc3cBDxhXE6LNA6WFItQAAAABJRU5ErkJggg=="  /> 0
+</td>
+<td align="left" valign="top">
+&#160;&#160;<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAADhSURBVHgBtZI/CoMwFIdfQg/QyU3o4ubopjdw8gS9heANdOsVegGv0A66F3RzqOCkU92ypUYSCM0flOIHIY/k5cdHEoA/QaLI8/y9TBdLb48xTtI0fZkCqOd5wMYv8zxDXdes/FBKkyzLnmIPy43TNMEwDNrBOSOEHkVRXMXCSQ5wHAd83wcdYRiuc9M00LbtbSnvSgAz4KpGxnFcTYwGQRBYA7gBaAN2GOgDXNeFKIqsAVVVmQ3YhnTjWgghZgP2AocbsE9lNYjjWHuwLEvouk5ZVwxkvS3IX7mH7ezptfMFbNhwT85bFwwAAAAASUVORK5CYII="  /> 0
+</td>
+<td align="left" valign="top">
+ 1
+</td>
+<td align="left" valign="top">
+&#160;
+</td>
+
+</tr>
+
+</table>
+<!-- Compile Status Flag --><!-- Service Status Flag -->
+<!-- mdladv_ignore_start --><div name = "Failed Check" id = "Failed Check" class="FailedCheck" style="margin-left: 0pt;"> <!-- mdladv_ignore_finish -->
+<p><hr /></p>  <a name="CheckRecord_65"></a><div class="CheckHeader" id="Header_com.mathworks.HDL.EmbeddedProject">
+<!-- mdladv_ignore_start --><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAEDSURBVHgBrVIxCsJAENwVGzux1MZCxDKg+AYVLHxBYmXjI/IECxsr4wsshPgHEUkZxCJNLCWdnWf2SI41uYBBpzhud2fm9vYO4EcgD9x+18QXruJtvYAfCCHsiXfd5QwSsQNfIDaxUpMKF7emMxhdfOgsljkR5ahGHER0XKNrKoNYbGfJ3CQbSw3Kq0I1idu0hIc91JotrQHhtllLToI6N1Agku5Uyqc1jgpoQMTH+aRi2uvEhQZ0cmMwVDHtdYPVGvDWedu6QRI+ZkBPpBNzg+c95INUHUTcKCsuGGBAi/yJR6NnAYotlIHA+djzHfWVS5kkYmBXAJmIC2lrBYi4+C94A/a+eag5PUw2AAAAAElFTkSuQmCC"  />&#160;<!-- mdladv_ignore_finish --><span class="CheckHeading" id="Heading_com.mathworks.HDL.EmbeddedProject">
+4.1. Create Project</span>
+<!-- mdladv_ignore_start --><!-- mdladv_ignore_finish --><!-- mdladv_ignore_start --><!-- mdladv_ignore_finish --></div>
+<!-- mdladv_ignore_start --><div class="subsection"><!-- mdladv_ignore_finish --><p /><font color="Red">
+Failed
+</font>
+Create Project.<p /><pre>Task "Create Project" unsuccessful. See log for details.
+Generated logfile: <a href="matlab:edit('hdl_prj/hdlsrc/opv_receiver_HDL_coder_input/workflow_task_CreateProject.log')">hdl_prj/hdlsrc/opv_receiver_HDL_coder_input/workflow_task_CreateProject.log</a>
+
+****** Vivado v2022.2 (64-bit)
+  **** SW Build 3671981 on Fri Oct 14 04:59:54 MDT 2022
+  **** IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+
+source vivado_create_prj.tcl -notrace
+create_project: Time (s): cpu = 00:00:06 ; elapsed = 00:00:22 . Memory (MB): peak = 1760.527 ; gain = 89.953 ; free physical = 12142 ; free virtual = 21690
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/matt/OPV_abraxas3d/hdl_prj/vivado_ip_prj/ipcore'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2022.2/data/ip'.
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+Starting Transceiver Toolbox HDL build
+Building:
+- axi_clkgen
+- axi_dmac
+- axi_hdmi_tx
+- axi_spdif_tx
+- axi_sysid
+- jesd204/ad_ip_jesd204_tpl_adc
+- jesd204/ad_ip_jesd204_tpl_dac
+- jesd204/axi_jesd204_rx
+- jesd204/axi_jesd204_tx
+- jesd204/jesd204_rx
+- jesd204/jesd204_tx
+- sysid_rom
+- util_pack/util_cpack2
+- util_pack/util_upack2
+- xilinx/axi_adxcvr
+- xilinx/axi_dacfifo
+- xilinx/util_adxcvr
+Please wait, this might take a few minutes
+
+****** Vivado v2022.2 (64-bit)
+  **** SW Build 3671981 on Fri Oct 14 04:59:54 MDT 2022
+  **** IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+
+source /home/matt/OPV_abraxas3d/hdl_prj/vivado_ip_prj/library/axi_clkgen/axi_clkgen_ip.tcl
+# source ../scripts/adi_env.tcl
+## set ad_hdl_dir [file normalize [file join [file dirname [info script]] "../.."]]
+## set ad_ghdl_dir [file normalize [file join [file dirname [info script]] "../../../ghdl"]]
+## if [info exists ::env(ADI_HDL_DIR)] {
+##   set ad_hdl_dir [file normalize $::env(ADI_HDL_DIR)]
+## }
+## if [info exists ::env(ADI_GHDL_DIR)] {
+##   set ad_ghdl_dir [file normalize $::env(ADI_GHDL_DIR)]
+## }
+# source $ad_hdl_dir/library/scripts/adi_ip_xilinx.tcl
+## source $ad_hdl_dir/library/scripts/adi_xilinx_device_info_enc.tcl
+### variable auto_set_param_list
+### variable auto_set_param_list_overwritable
+### variable fpga_series_list
+### variable fpga_family_list
+### variable speed_grade_list
+### variable dev_package_list
+### variable xcvr_type_list
+### variable fpga_voltage_list
+### set auto_set_param_list { \
+###           DEV_PACKAGE \
+###           SPEED_GRADE \
+###           FPGA_FAMILY \
+###           FPGA_TECHNOLOGY }
+### set auto_set_param_list_overwritable { \
+###           FPGA_VOLTAGE \
+###           XCVR_TYPE }
+### set fpga_technology_list { \
+###         { Unknown     0 } \
+###         { 7series     1 } \
+###         { ultrascale  2 } \
+###         { ultrascale+ 3 }}
+### set fpga_family_list { \
+###         { Unknown 0 } \
+###         { artix   1 } \
+###         { kintex  2 } \
+###         { virtex  3 } \
+###         { zynq    4 }}
+### set speed_grade_list { \
+###         { Unknown 0  } \
+###         { -1      10 } \
+###         { -1L     11 } \
+###         { -1H     12 } \
+###         { -1HV    13 } \
+###         { -1LV    14 } \
+###         { -2      20 } \
+###         { -2L     21 } \
+###         { -2LV    22 } \
+###         { -3      30 }}
+### set dev_package_list { \
+###         { Unknown 0  } \
+###         { rf      1  } \
+###         { fl      2  } \
+###         { ff      3  } \
+###         { fb      4  } \
+###         { hc      5  } \
+###         { fh      6  } \
+###         { cs      7  } \
+###         { cp      8  } \
+###         { ft      9  } \
+###         { fg      10 } \
+###         { sb      11 } \
+###         { rb      12 } \
+###         { rs      13 } \
+###         { cl      14 } \
+###         { sf      15 } \
+###         { ba      16 } \
+###         { fa      17 } \
+###         { fs      18 } \
+###         { fi      19 }}
+### set xcvr_type_list { \
+###         { Unknown             0 } \
+###         { GTPE2_NOT_SUPPORTED 1 } \
+###         { GTXE2               2 } \
+###         { GTHE2_NOT_SUPPORTED 3 } \
+###         { GTZE2_NOT_SUPPORTED 4 } \
+###         { GTHE3               5 } \
+###         { GTYE3_NOT_SUPPORTED 6 } \
+###         { GTRE4_NOT_SUPPORTED 7 } \
+###         { GTHE4               8 } \
+###         { GTYE4               9 } \
+###         { GTME4_NOT_SUPPORTED 10}}
+### set fpga_voltage_list {0 5000} ;
+### proc adi_device_spec {cellpath param} {
+### 
+###   set list_pointer [string tolower $param]
+###   set list_pointer [append list_pointer "_list"]
+### 
+###   upvar 1 $list_pointer $list_pointer
+### 
+###   set ip [get_bd_cells $cellpath]
+###   set part [get_property PART [current_project]]
+### 
+###   switch -regexp -- $param {
+###       FPGA_TECHNOLOGY {
+###           switch  -regexp -- $part {
+###              ^xc7    {set series_name 7series}
+###              ^xczu   {set series_name ultrascale+}
+###              ^xc.u.p {set series_name ultrascale+}
+###              ^xc.u   {set series_name ultrascale }
+###              default {
+###                  puts "Undefined fpga technology for &quot;$part&quot;!"
+###                  exit -1
+###              }
+###           }
+###           return "$series_name"
+###       }
+###       FPGA_FAMILY {
+###           set fpga_family [get_property FAMILY $part]
+###           foreach i $fpga_family_list {
+###               regexp ^[lindex $i 0] $fpga_family matched
+###           }
+###           return "$matched"
+###       }
+###       SPEED_GRADE {
+###           set speed_grade [get_property SPEED $part]
+###           return "$speed_grade"
+###       }
+###       DEV_PACKAGE {
+###           set dev_package [get_property PACKAGE $part]
+###           foreach i $dev_package_list {
+###               regexp ^[lindex $i 0] $dev_package matched
+###           }
+###           return "$matched"
+###       }
+###       XCVR_TYPE {
+###           set matched ""
+###           set dev_transcivers "none"
+###           foreach x [list_property $part] {
+###               regexp ^GT..._TRANSCEIVERS $x dev_transcivers
+###           }
+###           foreach i $xcvr_type_list {
+###               regexp ^[lindex $i 0] $dev_transcivers matched
+###           }
+###           if { $matched eq "" } {
+###                puts "CRITICAL WARNING: &quot;$dev_transcivers&quot; TYPE IS NOT SUPPORTED BY ADI!"
+###           }
+###           return "$matched"
+###       }
+###       FPGA_VOLTAGE {
+###           set fpga_voltage [get_property REF_OPERATING_VOLTAGE $part]
+### 	  set fpga_voltage [expr int([expr $fpga_voltage * 1000])] ;# // V to mV conversion(integer val)
+### 
+###           return "$fpga_voltage"
+###       }
+###       default {
+###           puts "WARNING: UNDEFINED PARAMETER &quot;$param&quot; (adi_device_spec)!"
+###       }
+###   }
+### }
+## if {![info exists REQUIRED_VIVADO_VERSION]} {
+##   set REQUIRED_VIVADO_VERSION "2019.1"
+## }
+## if {[info exists ::env(ADI_IGNORE_VERSION_CHECK)]} {
+##   set IGNORE_VERSION_CHECK 1
+## } elseif {![info exists IGNORE_VERSION_CHECK]} {
+##   set IGNORE_VERSION_CHECK 0
+## }
+## proc adi_ip_ttcl {ip_name ip_constr_files} {
+## 
+##   set proj_filegroup [ipx::get_file_groups -of_objects [ipx::current_core] -filter {NAME =~ *synthesis*}]
+##   set f [ipx::add_file $ip_constr_files $proj_filegroup]
+##   set_property -dict [list \
+##     type ttcl \
+##   ] $f
+##   ipx::reorder_files -front $ip_constr_files $proj_filegroup
+## }
+## proc adi_ip_sim_ttcl {ip_name ip_files} {
+## 
+##   set proj_filegroup [ipx::get_file_groups -of_objects [ipx::current_core] -filter {NAME =~ *simulation*}]
+##   set f [ipx::add_file $ip_files $proj_filegroup]
+##   set_property -dict [list \
+##     type ttcl \
+##   ] $f
+##   ipx::reorder_files -front $ip_files $proj_filegroup
+## }
+## proc adi_ip_bd {ip_name ip_bd_files} {
+##   set proj_filegroup [ipx::get_file_groups xilinx_blockdiagram -of_objects [ipx::current_core]]
+##   if {$proj_filegroup == {}} {
+##     set proj_filegroup [ipx::add_file_group -type xilinx_blockdiagram "" [ipx::current_core]]
+##   }
+## 
+##   foreach file $ip_bd_files {
+##     set f [ipx::add_file $file $proj_filegroup]
+##     set_property -dict [list \
+##       type tclSource \
+##     ] $f
+##   }
+## }
+## proc adi_ip_infer_streaming_interfaces {ip_name} {
+## 
+##   ipx::infer_bus_interfaces xilinx.com:interface:axis_rtl:1.0 [ipx::current_core]
+## 
+## }
+## proc adi_ip_infer_mm_interfaces {ip_name} {
+## 
+##   ipx::infer_bus_interfaces xilinx.com:interface:aximm_rtl:1.0 [ipx::current_core]
+## 
+## }
+## proc adi_set_ports_dependency {port_prefix dependency {driver_value {}}} {
+##   foreach port [ipx::get_ports [format "%s%s" $port_prefix "*"]] {
+##     set_property ENABLEMENT_DEPENDENCY $dependency $port
+##     if {$driver_value != {}} {
+##       set_property DRIVER_VALUE $driver_value $port
+##     }
+##   }
+## }
+## proc adi_set_bus_dependency {bus prefix dependency} {
+##   set_property ENABLEMENT_DEPENDENCY $dependency [ipx::get_bus_interfaces $bus -of_objects [ipx::current_core]]
+##   adi_set_ports_dependency $prefix $dependency 0
+## }
+## proc adi_add_port_map {bus phys logic} {
+##   set map [ipx::add_port_map $phys $bus]
+##   set_property "PHYSICAL_NAME" $phys $map
+##   set_property "LOGICAL_NAME" $logic $map
+## }
+## proc adi_add_bus {bus_name mode abs_type bus_type port_maps} {
+##   set bus [ipx::add_bus_interface $bus_name [ipx::current_core]]
+## 
+##   set_property "ABSTRACTION_TYPE_VLNV" $abs_type $bus
+##   set_property "BUS_TYPE_VLNV" $bus_type $bus
+##   set_property "INTERFACE_MODE" $mode $bus
+## 
+##   foreach port_map $port_maps {
+##     adi_add_port_map $bus {*}$port_map
+##   }
+## }
+## proc adi_add_multi_bus {num bus_name_prefix mode abs_type bus_type port_maps dependency} {
+##   for {set i 0} {$i &lt; $num} {incr i} {
+##     set bus_name [format "%s%d" $bus_name_prefix $i]
+##     set bus [ipx::add_bus_interface $bus_name [ipx::current_core]]
+## 
+##     set_property "ABSTRACTION_TYPE_VLNV" $abs_type $bus
+##     set_property "BUS_TYPE_VLNV" $bus_type $bus
+##     set_property "INTERFACE_MODE" $mode $bus
+## 
+##     if {$dependency ne ""} {
+##       set bus_dependency [string map [list "{i}" $i] $dependency]
+##       set_property ENABLEMENT_DEPENDENCY $bus_dependency $bus
+##     }
+## 
+##     foreach port_map $port_maps {
+##       lassign $port_map phys logic width width_dep
+##       set map [ipx::add_port_map $phys $bus]
+##       set_property "PHYSICAL_NAME" $phys $map
+##       set_property "LOGICAL_NAME" $logic $map
+##       set_property "PHYSICAL_RIGHT" [expr $i*$width] $map
+##       set_property "PHYSICAL_LEFT" [expr ($i+1)*$width-1] $map
+##       if {$width_dep ne ""} {
+##         set_property "PHYSICAL_RIGHT_RESOLVE_TYPE" "dependent" $map
+##         set_property "PHYSICAL_LEFT_RESOLVE_TYPE" "dependent" $map
+##         set width_dep_r "(($width_dep) * $i)"
+##         set width_dep_l "(($width_dep) * ($i + 1)-1)"
+##         set_property "PHYSICAL_RIGHT_DEPENDENCY" $width_dep_r $map
+##         set_property "PHYSICAL_LEFT_DEPENDENCY" $width_dep_l $map
+##       }
+##     }
+##   }
+## }
+## proc adi_add_bus_clock {clock_signal_name bus_inf_name {reset_signal_name ""} {reset_signal_mode "slave"}} {
+##   set bus_inf_name_clean [string map {":" "_"} $bus_inf_name]
+##   set clock_inf_name [format "%s%s" $bus_inf_name_clean "_signal_clock"]
+##   set clock_inf [ipx::add_bus_interface $clock_inf_name [ipx::current_core]]
+##   set_property abstraction_type_vlnv "xilinx.com:signal:clock_rtl:1.0" $clock_inf
+##   set_property bus_type_vlnv "xilinx.com:signal:clock:1.0" $clock_inf
+##   set_property display_name $clock_inf_name $clock_inf
+##   set clock_map [ipx::add_port_map "CLK" $clock_inf]
+##   set_property physical_name $clock_signal_name $clock_map
+## 
+##   set assoc_busif [ipx::add_bus_parameter "ASSOCIATED_BUSIF" $clock_inf]
+##   set_property value $bus_inf_name $assoc_busif
+## 
+##   if { $reset_signal_name != "" } {
+##     set assoc_reset [ipx::add_bus_parameter "ASSOCIATED_RESET" $clock_inf]
+##     set_property value $reset_signal_name $assoc_reset
+## 
+##     set reset_inf_name [format "%s%s" $bus_inf_name_clean "_signal_reset"]
+##     set reset_inf [ipx::add_bus_interface $reset_inf_name [ipx::current_core]]
+##     set_property abstraction_type_vlnv "xilinx.com:signal:reset_rtl:1.0" $reset_inf
+##     set_property bus_type_vlnv "xilinx.com:signal:reset:1.0" $reset_inf
+##     set_property display_name $reset_inf_name $reset_inf
+##     set_property interface_mode $reset_signal_mode $reset_inf
+##     set reset_map [ipx::add_port_map "RST" $reset_inf]
+##     set_property physical_name $reset_signal_name $reset_map
+## 
+##     set reset_polarity [ipx::add_bus_parameter "POLARITY" $reset_inf]
+##     if {[string match {*[Nn]} $reset_signal_name] == 1} {
+##       set_property value "ACTIVE_LOW" $reset_polarity
+##     } else {
+##       set_property value "ACTIVE_HIGH" $reset_polarity
+##     }
+##   }
+## }
+## proc adi_ip_add_core_dependencies {vlnvs} {
+##   foreach file_group [ipx::get_file_groups * -of_objects [ipx::current_core]] {
+##     foreach vlnv $vlnvs {
+##       ipx::add_subcore $vlnv $file_group
+##     }
+##   }
+## }
+## proc adi_ip_create {ip_name} {
+## 
+##   global ad_hdl_dir
+##   global ad_ghdl_dir
+##   global REQUIRED_VIVADO_VERSION
+##   global IGNORE_VERSION_CHECK
+## 
+##   set VIVADO_VERSION [version -short]
+##   if {$IGNORE_VERSION_CHECK} {
+##     if {[string compare $VIVADO_VERSION $REQUIRED_VIVADO_VERSION] != 0} {
+##       puts -nonewline "CRITICAL WARNING: vivado version mismatch; "
+##       puts -nonewline "expected $REQUIRED_VIVADO_VERSION, "
+##       puts -nonewline "got $VIVADO_VERSION.\n"
+##     }
+##   } else {
+##     if {[string compare $VIVADO_VERSION $REQUIRED_VIVADO_VERSION] != 0} {
+##       puts -nonewline "ERROR: vivado version mismatch; "
+##       puts -nonewline "expected $REQUIRED_VIVADO_VERSION, "
+##       puts -nonewline "got $VIVADO_VERSION.\n"
+##       puts -nonewline "This ERROR message can be down-graded to CRITICAL WARNING by setting ADI_IGNORE_VERSION_CHECK environment variable to 1. Be aware that ADI will not support you, if you are using a different tool version.\n"
+##       exit 2
+##     }
+##   }
+## 
+##   create_project $ip_name . -force
+## 
+##   ## Load custom message severity definitions
+##   source $ad_hdl_dir/projects/scripts/adi_xilinx_msg.tcl
+## 
+##   set lib_dirs $ad_hdl_dir/library
+##   if {$ad_hdl_dir ne $ad_ghdl_dir} {
+##     lappend lib_dirs $ad_ghdl_dir/library
+##   }
+## 
+##   set_property ip_repo_paths $lib_dirs [current_fileset]
+##   update_ip_catalog
+## }
+## proc adi_ip_files {ip_name ip_files} {
+##   set proj_fileset [get_filesets sources_1]
+##   foreach m_file $ip_files {
+##     if {[file extension $m_file] eq ".xdc"} {
+##       add_files -norecurse -fileset constrs_1 $m_file
+##     } else {
+##       add_files -norecurse -scan_for_includes -fileset $proj_fileset $m_file
+##     }
+##   }
+##   set_property "top" "$ip_name" $proj_fileset
+## }
+## proc adi_ip_properties_lite {ip_name} {
+## 
+##   global ad_hdl_dir
+## 
+##   ipx::package_project -root_dir . -vendor analog.com -library user -taxonomy /Analog_Devices
+## 
+##   set_property name $ip_name [ipx::current_core]
+## 
+##   set_property vendor_display_name {Analog Devices} [ipx::current_core]
+##   set_property company_url {http://www.analog.com} [ipx::current_core]
+## 
+##   set i_families ""
+##   foreach i_part [get_parts] {
+##     lappend i_families [get_property FAMILY $i_part]
+##   }
+##   set i_families [lsort -unique $i_families]
+##   set s_families [get_property supported_families [ipx::current_core]]
+##   foreach i_family $i_families {
+##     set s_families "$s_families $i_family Production"
+##     set s_families "$s_families $i_family Beta"
+##   }
+##   set_property supported_families $s_families [ipx::current_core]
+## 
+##   ipx::save_core [ipx::current_core]
+## 
+##   ipx::remove_all_bus_interface [ipx::current_core]
+##   set memory_maps [ipx::get_memory_maps * -of_objects [ipx::current_core]]
+##   foreach map $memory_maps {
+##     ipx::remove_memory_map [lindex $map 2] [ipx::current_core]
+##   }
+## 
+##   ipx::update_checksums [ipx::current_core]
+##   ipx::save_core [ipx::current_core]
+## }
+## proc adi_ip_properties {ip_name} {
+## 
+##   adi_ip_properties_lite $ip_name
+## 
+##   ipx::infer_bus_interface {\
+##     s_axi_awvalid \
+##     s_axi_awaddr \
+##     s_axi_awprot \
+##     s_axi_awready \
+##     s_axi_wvalid \
+##     s_axi_wdata \
+##     s_axi_wstrb \
+##     s_axi_wready \
+##     s_axi_bvalid \
+##     s_axi_bresp \
+## 
+##     s_axi_bready \
+##     s_axi_arvalid \
+##     s_axi_araddr \
+##     s_axi_arprot \
+##     s_axi_arready \
+##     s_axi_rvalid \
+##     s_axi_rdata \
+##     s_axi_rresp \
+##     s_axi_rready} \
+##   xilinx.com:interface:aximm_rtl:1.0 [ipx::current_core]
+## 
+##   ipx::infer_bus_interface s_axi_aclk xilinx.com:signal:clock_rtl:1.0 [ipx::current_core]
+##   ipx::infer_bus_interface s_axi_aresetn xilinx.com:signal:reset_rtl:1.0 [ipx::current_core]
+## 
+##   set raddr_width [expr [get_property SIZE_LEFT [ipx::get_ports -nocase true s_axi_araddr -of_objects [ipx::current_core]]] + 1]
+##   set waddr_width [expr [get_property SIZE_LEFT [ipx::get_ports -nocase true s_axi_awaddr -of_objects [ipx::current_core]]] + 1]
+## 
+##   if {$raddr_width != $waddr_width} {
+##     puts [format "WARNING: AXI address width mismatch for %s (r=%d, w=%d)" $ip_name $raddr_width, $waddr_width]
+##     set range 65536
+##   } else {
+##     if {$raddr_width &gt;= 16} {
+##       set range 65536
+##     } else {
+##       set range [expr 1 &lt;&lt; $raddr_width]
+##     }
+##   }
+## 
+##   ipx::add_memory_map {s_axi} [ipx::current_core]
+##   set_property slave_memory_map_ref {s_axi} [ipx::get_bus_interfaces s_axi -of_objects [ipx::current_core]]
+##   ipx::add_address_block {axi_lite} [ipx::get_memory_maps s_axi -of_objects [ipx::current_core]]
+##   set_property range $range [ipx::get_address_blocks axi_lite \
+##     -of_objects [ipx::get_memory_maps s_axi -of_objects [ipx::current_core]]]
+##   ipx::associate_bus_interfaces -clock s_axi_aclk -reset s_axi_aresetn [ipx::current_core]
+##   ipx::save_core
+## }
+## proc adi_init_bd_tcl {} {
+## 
+##   global auto_set_param_list
+##   global auto_set_param_list_overwritable
+##   set cc [ipx::current_core]
+## 
+##   if { [file exists bd] } {
+##     file delete -force bd
+##   }
+##   file mkdir bd
+## 
+##   set bd_tcl [open "bd/bd.tcl" w]
+## 
+##   puts $bd_tcl "# SCRIPT AUTO-GENERATED AT BUILD, DO NOT MODIFY!"
+##   puts $bd_tcl "proc init {cellpath otherInfo} {"
+##   puts $bd_tcl "  set ip \[get_bd_cells \$cellpath\]"
+##   puts $bd_tcl ""
+##   set auto_set_param ""
+##   foreach i $auto_set_param_list {
+##     if { [ipx::get_user_parameters $i -of_objects $cc -quiet] ne "" } {
+##       append auto_set_param "    $i \\\n"
+##     }
+##   }
+##   if { $auto_set_param ne "" } {
+##     puts $bd_tcl "  bd::mark_propagate_only \$ip &quot; \&quot;
+##     regsub "${i} \\\&quot; $auto_set_param "$i&quot;" auto_set_param
+##     puts $bd_tcl $auto_set_param
+##   }
+## 
+##   set auto_set_overwritable_param ""
+##   foreach i $auto_set_param_list_overwritable {
+##     if { [ipx::get_user_parameters $i -of_objects $cc -quiet] ne "" } {
+##       append auto_set_overwritable_param "    $i \\\n"
+##     }
+##   }
+##   if { $auto_set_overwritable_param ne "" } {
+##     puts $bd_tcl "  bd::mark_propagate_override \$ip &quot; \&quot;
+##     regsub "${i} \\\&quot; $auto_set_overwritable_param "$i&quot;" auto_set_overwritable_param
+##     puts $bd_tcl $auto_set_overwritable_param
+##   }
+##   puts $bd_tcl "  adi_auto_assign_device_spec \$cellpath"
+##   puts $bd_tcl "}"
+##   puts $bd_tcl ""
+##   puts $bd_tcl "# auto set parameters defined in auto_set_param_list (adi_xilinx_device_info_enc.tcl)"
+##   puts $bd_tcl "proc adi_auto_assign_device_spec {cellpath} {"
+##   puts $bd_tcl ""
+##   puts $bd_tcl "  set ip \[get_bd_cells \$cellpath\]"
+##   puts $bd_tcl "  set ip_param_list \[list_property \$ip\]"
+##   puts $bd_tcl "  set ip_path \[bd::get_vlnv_dir \[get_property VLNV \$ip\]\]"
+##   puts $bd_tcl ""
+##   puts $bd_tcl "  set parent_dir &quot;../&quot;"
+##   puts $bd_tcl "  for {set x 1} {\$x&lt;=4} {incr x} {"
+##   puts $bd_tcl "    set linkname \${ip_path}\${parent_dir}scripts/adi_xilinx_device_info_enc.tcl"
+##   puts $bd_tcl "    if { \[file exists \$linkname\] } {"
+##   puts $bd_tcl "      source \${ip_path}\${parent_dir}/scripts/adi_xilinx_device_info_enc.tcl"
+##   puts $bd_tcl "      break"
+##   puts $bd_tcl "    }"
+##   puts $bd_tcl "    append parent_dir &quot;../&quot;"
+##   puts $bd_tcl "  }"
+##   puts $bd_tcl ""
+##   puts $bd_tcl "  # Find predefindes auto assignable parameters"
+##   puts $bd_tcl "  foreach i \$auto_set_param_list {"
+##   puts $bd_tcl "    if { \[lsearch \$ip_param_list &quot;CONFIG.\$i&quot;\] &gt; 0 } {"
+##   puts $bd_tcl "      set val \[adi_device_spec \$cellpath \$i\]"
+##   puts $bd_tcl "      set_property CONFIG.\$i \$val \$ip"
+##   puts $bd_tcl "    }"
+##   puts $bd_tcl "  }"
+##   puts $bd_tcl ""
+##   puts $bd_tcl "  # Find predefindes auto assignable/overwritable parameters"
+##   puts $bd_tcl "  foreach i \$auto_set_param_list_overwritable {"
+##   puts $bd_tcl "    if { \[lsearch \$ip_param_list &quot;CONFIG.\$i&quot;\] &gt; 0 } {"
+##   puts $bd_tcl "      set val \[adi_device_spec \$cellpath \$i\]"
+##   puts $bd_tcl "      set_property CONFIG.\$i \$val \$ip"
+##   puts $bd_tcl "    }"
+##   puts $bd_tcl "  }"
+##   puts $bd_tcl "}"
+##   puts $bd_tcl ""
+##   close $bd_tcl
+## 
+##   set proj_fileset [get_filesets sources_1]
+##   add_files -norecurse -scan_for_includes -fileset $proj_fileset "bd/bd.tcl"
+## 
+##   set local_mk [open "temporary_case_dependencies.mk" w]
+##   seek $local_mk 0 start
+##   puts $local_mk "CLEAN_TARGET += bd"
+##   puts $local_mk "CLEAN_TARGET += temporary_case_dependencies.mk"
+##   close $local_mk
+## }
+## proc adi_add_auto_fpga_spec_params {} {
+## 
+##   global auto_set_param_list
+##   global auto_set_param_list_overwritable
+##   set cc [ipx::current_core]
+## 
+##   foreach i $auto_set_param_list {
+##     if { [ipx::get_user_parameters $i -of_objects $cc -quiet] ne ""} {
+##       adi_add_device_spec_param $i
+##     }
+##   }
+##   foreach i $auto_set_param_list_overwritable {
+##     if { [ipx::get_user_parameters $i -of_objects $cc -quiet] ne ""} {
+##       adi_add_device_spec_param $i
+##     }
+##   }
+## }
+## proc adi_add_device_spec_param {ip_param} {
+## 
+##   set cc [ipx::current_core]
+## 
+##   set list_pointer [string tolower $ip_param]
+##   set list_pointer [append list_pointer "_list"]
+## 
+##   global $list_pointer
+## 
+##   # set j 1D list from the original list
+##   foreach i [subst $$list_pointer] {lappend j [lindex $i 0] [lindex $i 1]}
+## 
+##   # set ranges or validation pairs (show x in GUI assign the corresponding y to HDL)
+##   if { [llength [subst $$list_pointer]] == 2 &amp;&amp; [llength $j] == 4} {
+##     set_property -dict [list \
+##       "value_validation_type" "range_long" \
+##       "value_validation_range_minimum" [lindex [subst $$list_pointer] 0] \
+##       "value_validation_range_maximum" [lindex [subst $$list_pointer] 1] ] \
+##     [ipx::get_user_parameters $ip_param -of_objects $cc]
+##   } else {
+##     set_property -dict [list \
+##       "value_validation_type" "pairs" \
+##       "value_validation_pairs" $j ] \
+##     [ipx::get_user_parameters $ip_param -of_objects $cc]
+##   }
+## 
+##   # FPGA info grup
+##   set info_group_name "FPGA info"
+##   set info_group [ipgui::get_groupspec -name $info_group_name -component $cc -quiet]
+##   if { [string trim $info_group] eq "" } {
+##     set page0 [ipgui::get_pagespec -name "Page 0" -component $cc]
+##     set info_group [ipgui::add_group -name $info_group_name -component $cc \
+##         -parent $page0 -display_name $info_group_name]
+##   }
+## 
+##   set p [ipgui::get_guiparamspec -name $ip_param -component $cc]
+##   set_property -dict [list "widget" "comboBox" ] $p
+##   ipgui::move_param -component $cc -order 0 $p -parent $info_group
+## }
+## proc adi_if_define {name} {
+## 
+##   ipx::create_abstraction_definition analog.com interface ${name}_rtl 1.0
+##   ipx::create_bus_definition analog.com interface $name 1.0
+## 
+##   set_property xml_file_name ${name}_rtl.xml [ipx::current_busabs]
+##   set_property xml_file_name ${name}.xml [ipx::current_busdef]
+##   set_property bus_type_vlnv analog.com:interface:${name}:1.0 [ipx::current_busabs]
+## 
+##   ipx::save_abstraction_definition [ipx::current_busabs]
+##   ipx::save_bus_definition [ipx::current_busdef]
+## }
+## proc adi_if_ports {dir width name {type none}} {
+## 
+##   ipx::add_bus_abstraction_port $name [ipx::current_busabs]
+##   set m_intf [ipx::get_bus_abstraction_ports $name -of_objects [ipx::current_busabs]]
+##   set_property master_presence required $m_intf
+##   set_property slave_presence  required $m_intf
+##   set_property master_width $width $m_intf
+##   set_property slave_width  $width $m_intf
+## 
+##   set m_dir "in"
+##   set s_dir "out"
+##   if {$dir eq "output"} {
+##     set m_dir "out"
+##     set s_dir "in"
+##   }
+## 
+##   set_property master_direction $m_dir $m_intf
+##   set_property slave_direction  $s_dir $m_intf
+## 
+##   if {$type ne "none"} {
+##     set_property is_${type} true $m_intf
+##   }
+## 
+##   ipx::save_bus_definition [ipx::current_busdef]
+##   ipx::save_abstraction_definition [ipx::current_busabs]
+## }
+## proc adi_if_infer_bus {if_name mode name maps} {
+## 
+##   ipx::add_bus_interface $name [ipx::current_core]
+##   set m_bus_if [ipx::get_bus_interfaces $name -of_objects [ipx::current_core]]
+##   set_property abstraction_type_vlnv ${if_name}_rtl:1.0 $m_bus_if
+##   set_property bus_type_vlnv ${if_name}:1.0 $m_bus_if
+##   set_property interface_mode $mode $m_bus_if
+## 
+##   foreach map $maps  {
+##     set m_maps [regexp -all -inline {\S+} $map]
+##     lassign $m_maps p_name p_map
+##     ipx::add_port_map $p_name $m_bus_if
+##     set_property physical_name $p_map [ipx::get_port_maps $p_name -of_objects $m_bus_if]
+##   }
+## }
+# adi_ip_create axi_clkgen
+ERROR: vivado version mismatch; expected 2019.1, got 2022.2.
+This ERROR message can be down-graded to CRITICAL WARNING by setting ADI_IGNORE_VERSION_CHECK environment variable to 1. Be aware that ADI will not support you, if you are using a different tool version.
+INFO: [Common 17-206] Exiting Vivado at Wed Feb 14 00:49:38 2024...
+child process exited abnormally
+INFO: [Common 17-206] Exiting Vivado at Wed Feb 14 00:49:38 2024...
+
+Elapsed time is 609.5806 seconds.
+</pre><!-- mdladv_ignore_start --><!-- inputparam_section_start --><H5><b>
+Input Parameters Selection
+</b>
+</H5><table class="AdvTable" border="1">
+<tr>
+<th align="left" valign="top">
+<b>
+Name
+</b>
+
+</th>
+<th align="left" valign="top">
+<b>
+Value
+</b>
+
+</th>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+Embedded system tool:
+</td>
+<td align="left" valign="top">
+Xilinx Vivado with IP Integrator
+</td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+Project folder:
+</td>
+<td align="left" valign="top">
+hdl_prj/vivado_ip_prj
+</td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+Synthesis objective:
+</td>
+<td align="left" valign="top">
+Speed Optimized
+</td>
+
+</tr>
+<tr>
+<td align="left" valign="top">
+Enable IP caching
+</td>
+<td align="left" valign="top">
+false
+</td>
+
+</tr>
+
+</table>
+<!-- inputparam_section_finish --><!-- mdladv_ignore_finish --><!-- mdladv_ignore_start --></div><!-- mdladv_ignore_finish --><!-- mdladv_ignore_start --></div><!-- mdladv_ignore_finish -->
+<span name = "EmbedImages" id="EmbedImages"></span><!-- mdladv_ignore_start -->
+</div><!-- mdladv_ignore_finish --><!-- mdladv_ignore_start -->
+</div><!-- mdladv_ignore_finish -->
+</body>  
+</html>  
