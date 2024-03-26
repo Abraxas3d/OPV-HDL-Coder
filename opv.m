@@ -90,6 +90,9 @@ phase_increment_f4 = int32((f4*2^32)/device_clock);
 phase_increment_bo_be = int32((orthogonal_frequency*2^32)/device_clock);
 phase_increment_carrier = int32((carrier_frequency*2^32)/device_clock);
 
+phase_increment_lower = int32(((carrier_frequency-orthogonal_frequency)*2^32)/device_clock);
+phase_increment_higher = int32(((carrier_frequency+orthogonal_frequency)*2^32)/device_clock);
+
 
 %% CIC Worksheet
 
