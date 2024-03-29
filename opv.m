@@ -11,6 +11,8 @@ samples_per_frame = symbols_per_frame*samples_per_symbol;
 sample_rate = samples_per_symbol*symbol_rate;
 device_clock = 245.76e6; % ADRV9009 receiver IQ rate
 channel_width = 10e6/64;
+%Hodgart_Massey
+delay = round(device_clock*(1/bit_rate));
 
 
 %% MSK Implementation
