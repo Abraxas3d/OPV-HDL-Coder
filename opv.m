@@ -13,6 +13,7 @@ device_clock = 245.76e6; % ADRV9009 receiver IQ rate
 channel_width = 10e6/64;
 %Hodgart_Massey
 delay = round(device_clock*(1/bit_rate));
+bias = 0.00;
 
 
 %% MSK Implementation
@@ -341,4 +342,4 @@ save('opv_workspace.mat')
 load('opv_workspace.mat')
 
 % open the simulink model under development
-open_system("opv_receiver_HDL_coder_input_constructed_MSK")
+open_system("opv_receiver_HDL_coder_input_Hodgart_Massey")
