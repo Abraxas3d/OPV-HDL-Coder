@@ -9,7 +9,7 @@ bit_period = 1/bit_rate;
 frame_duration = symbol_period*symbols_per_frame;
 samples_per_frame = symbols_per_frame*samples_per_symbol;
 sample_rate = samples_per_symbol*symbol_rate;
-device_clock = 2e6; % 2 MHz to test with
+device_clock = 61.44e6; % PLUTO SDR transmit IQ rate
 %device_clock = 245.76e6; % ADRV9009 receiver IQ rate
 channel_width = 10e6/64;
 %Hodgart_Massey
