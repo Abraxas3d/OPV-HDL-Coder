@@ -2,6 +2,7 @@
 samples_per_symbol = 10;
 bits_per_symbol = 2;
 symbols_per_frame = 1084;
+bits_per_frame = bits_per_symbol*symbols_per_frame;
 symbol_rate = 27100;
 bit_rate = bits_per_symbol*symbol_rate;
 symbol_period = 1/symbol_rate;
@@ -26,6 +27,7 @@ orthogonal_frequency = 1/(4*bit_period);
 carrier_frequency_multiple_floor = floor((channel_width/2)/(orthogonal_frequency));
 carrier_frequency_multiple_ceil = ceil((channel_width/2)/(orthogonal_frequency));
 carrier_frequency = carrier_frequency_multiple_ceil*(orthogonal_frequency);
+carrier_frequency = carrier_frequency;
 msk_bandwidth = 1.5*bit_rate;
 Tb_delay = floor((bit_period)/(1/device_clock));
 
@@ -54,9 +56,21 @@ modulation_index = deviation/symbol_rate;
 %modulation_index = 2*outer_deviation * symbol_period/3;
 
 %% Preamble Construction
-% stay in deviation land
-% preamble = repmat([3; -3], symbols_per_frame/2, 1);
-% This doesn't make sense without four tones - change to ZC
+% MIL-STD-188-181C
+MSK_Preamble = zeros(1,bits_per_frame+1)'
+MSK_Preamble_Data = repmat([1; 1; 0; 0], bits_per_frame/4, 1);
+
+for i = 2:bits_per_frame+1
+    MSK_Preamble(i) = MSK_Preamble_Data(i-1);
+end
+
+%MSK_Preamble(bits_per_frame + 1) = 0;
+
+MSK_Preamble = logical(MSK_Preamble);
+MSK_Preamble_Length = length(MSK_Preamble);
+%MSK_Preamble = timeseries(MSK_Preamble, 1/(bit_rate)); % at the bit rate
+
+%% Backup Zadoff-Chu Frame, Just in Case
 % This is a Zadoff-Chu sequence, similar to the one in 3GPP LTE
 % It has essentially zero autocorrelation off of the zero lag position.
 % Commonly used for synchronization in cellular protocols. 
@@ -127,7 +141,7 @@ a = fi(0,1,16,15);
 %% Create a Push to Talk (PTT) Signal
 
 
-PTT_1 = repmat(0, 100, 1);
+PTT_1 = repmat(0, 1, 1);
 PTT_2 = repmat(1, symbols_per_frame*3, 1);
 PTT_3 = repmat(0, symbols_per_frame, 1);
 PTT_4 = repmat(1, symbols_per_frame*2, 1);
@@ -135,16 +149,29 @@ PTT = cat(1, PTT_1, PTT_2, PTT_3, PTT_4);
 PTT = logical(PTT);
 PTTlength = length(PTT);
 %PTT = timetable(PTT,'SampleRate',Fs)
-PTT = timeseries(PTT, 1/(symbol_rate*2)); % at the bit rate
+PTT = timeseries(PTT, 1/(bit_rate)); % at the bit rate
 
 %% Numerically Controlled Oscillator worksheet
 % (desired frequency * 2^register width) / sample or clock rate
 
-phase_increment_bo_be = int32((orthogonal_frequency*2^32)/device_clock);
-phase_increment_carrier = int32((carrier_frequency*2^32)/device_clock);
+desired_phase_offset = 0 %radians
+SFDR = 60 %spurious-free dynamic range in dB for the PLUTO SDR (35dB measured)
+desired_frequency_resolution = 1; %Hz
 
-phase_increment_lower = int32(((carrier_frequency-orthogonal_frequency)*2^32)/device_clock);
-phase_increment_higher = int32(((carrier_frequency+orthogonal_frequency)*2^32)/device_clock);
+accumulator_width = ceil(log2(device_clock/desired_frequency_resolution))
+
+achieved_frequency_resolution = device_clock/(2^accumulator_width)
+
+
+phase_offset = (2^accumulator_width)*(desired_phase_offset/(2*pi))
+quantizer_word_length = ceil((SFDR-12)/6)
+dither_bits = accumulator_width - quantizer_word_length
+
+phase_increment_bo_be = int32((orthogonal_frequency*(2^accumulator_width))/device_clock);
+phase_increment_carrier = int32((carrier_frequency*(2^accumulator_width))/device_clock);
+
+phase_increment_lower = int32(((carrier_frequency-orthogonal_frequency)*2^accumulator_width)/device_clock);
+phase_increment_higher = int32(((carrier_frequency+orthogonal_frequency)*2^accumulator_width)/device_clock);
 
 
 
@@ -159,6 +186,6 @@ save('opv_workspace.mat')
 
 % load the workspace created by this script
 load('opv_workspace.mat')
-
+    
 % open the simulink model under development
-open_system("opv_receiver_HDL_coder_input_Hodgart_Massey")
+open_system("opv_pluto_transmitter_HDL_coder_input")
